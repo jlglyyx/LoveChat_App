@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "844996255006",
+    "project_id": "twomorrow-8a01e",
+    "storage_bucket": "twomorrow-8a01e.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:844996255006:android:3f4141ca2a57404c5b7d0f",
+        "android_client_info": {
+          "package_name": "com.yang.lovechat"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDS7HBZN0ZSnKTyobm5Uw7GVyNuTKrFcBY"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

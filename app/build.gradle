@@ -1,0 +1,108 @@
+plugins {
+    alias(libs.plugins.android.application)
+    alias(libs.plugins.kotlin.android)
+    alias(libs.plugins.google.services)
+    alias(libs.plugins.kotlin.parcelize)
+}
+
+android {
+    namespace 'com.yang.lovechat'
+    compileSdk {
+        version = release(36)
+    }
+
+    defaultConfig {
+        applicationId "com.yang.lovechat"
+        minSdk 24
+        targetSdk 36
+        versionCode 1
+        versionName "1.0"
+
+        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+    }
+
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        }
+    }
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_21
+        targetCompatibility JavaVersion.VERSION_21
+    }
+    buildFeatures {
+        viewBinding true
+        buildConfig true
+    }
+}
+
+dependencies {
+    
+    
+    implementation libs.androidx.core.ktx
+    implementation libs.androidx.appcompat
+    implementation libs.material
+    implementation libs.androidx.activity
+    implementation libs.androidx.constraintlayout
+    implementation libs.androidx.documentfile
+    testImplementation libs.junit
+    androidTestImplementation libs.androidx.junit
+    androidTestImplementation libs.androidx.espresso.core
+
+    implementation libs.androidx.media3.exoplayer
+    implementation libs.androidx.media3.ui
+    implementation libs.androidx.media3.common
+    implementation libs.androidx.media3.dash
+
+    implementation libs.androidx.lifecycle.viewmodel.ktx
+    implementation libs.androidx.lifecycle.runtime.ktx
+    implementation libs.androidx.lifecycle.livedata.ktx
+    implementation libs.androidx.lifecycle.process
+
+    implementation libs.activity.ktx
+    implementation libs.fragment.ktx
+
+
+    // 网络
+    implementation libs.okhttp
+    implementation libs.retrofit.core
+    implementation libs.retrofit.converter.gson
+    implementation libs.retrofit.converter.scalars
+
+    // 存储
+//    implementation libs.mmkv
+
+    // 图片
+    implementation libs.glide.core
+    implementation libs.glide.okhttp
+    implementation libs.glide.transformations
+
+    // 列表与分页
+    implementation libs.brvah
+    implementation libs.paging.runtime
+    implementation libs.swiperefreshlayout
+
+    // UI 工具
+    implementation libs.utilcodex
+    implementation libs.photoview
+    implementation libs.shapeview
+    implementation libs.banner
+    implementation libs.androidvideocache
+
+    implementation libs.flexbox
+    implementation libs.xpopup
+
+    implementation 'id.zelory:compressor:3.0.1'
+
+    implementation 'com.contrarywind:Android-PickerView:4.1.9'
+
+    implementation 'com.google.android.gms:play-services-location:21.3.0'
+
+    implementation 'com.android.billingclient:billing-ktx:8.0.0'
+
+    implementation "com.google.android.gms:play-services-auth:21.3.0"
+
+
+
+}

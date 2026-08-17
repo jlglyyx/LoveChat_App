@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.hjq.shape.layout.ShapeLinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    app:shape_solidColor="@color/white"
+    android:padding="@dimen/dp_20"
+    app:shape_radius="@dimen/dp_20"
+   >
+
+
+    <com.hjq.shape.view.ShapeEditText
+        android:id="@+id/tv_tv0"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textSize="@dimen/sp_16"
+        android:padding="@dimen/dp_15"
+        android:textColor="@color/black"
+        android:hint="192.168.1.23"
+        app:shape_radius="@dimen/dp_10"
+        app:shape_solidColor="@color/black_10"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        />
+
+    <com.hjq.shape.view.ShapeTextView
+        android:id="@+id/tv_tv3"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textSize="@dimen/sp_16"
+        android:padding="@dimen/dp_15"
+        android:text="确定"
+        android:layout_marginTop="@dimen/dp_30"
+        app:shape_radius="@dimen/dp_10"
+        android:gravity="center"
+        app:shape_solidGradientStartColor="@color/startColor"
+        app:shape_solidGradientEndColor="@color/endColor"
+        android:textColor="@color/white"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        />
+
+
+</com.hjq.shape.layout.ShapeLinearLayout>

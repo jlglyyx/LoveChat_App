@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <declare-styleable name="AppToolBar">
+        <attr name="title" format="string" />
+        <attr name="titleColor" format="reference" />
+        <attr name="backImgVisible" format="boolean" />
+        <attr name="backImgSrc" format="reference" />
+        <attr name="endImgVisible" format="boolean" />
+        <attr name="endImgSrc" format="reference" />
+        <attr name="toolbarColor" format="reference" />
+    </declare-styleable>
+
+    <declare-styleable name="ItemContentView">
+        <attr name="itemLeftContent" format="string"/>
+        <attr name="itemLeftContentColor" format="reference"/>
+        <attr name="itemLeftImgVisible" format="boolean"/>
+        <attr name="itemLeftImgSrc" format="reference"/>
+        <attr name="itemLeftImgTint" format="reference"/>
+        <attr name="itemRightContent" format="string"/>
+        <attr name="itemRightImgVisible" format="boolean"/>
+        <attr name="itemRightImgSrc" format="reference"/>
+        <attr name="itemRightImgTint" format="reference"/>
+        <attr name="itemRightContentVisible" format="boolean"/>
+        <attr name="itemRightContentColor" format="reference"/>
+        <attr name="lineVisible" format="boolean"/>
+        <attr name="itemBg" format="reference"/>
+    </declare-styleable>
+</resources>

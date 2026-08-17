@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.hjq.shape.layout.ShapeConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/scl_container"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    app:shape_radius="@dimen/dp_10"
+    android:padding="@dimen/dp_5"
+    app:shape_solidColor="@color/white"
+    android:orientation="vertical">
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/recyclerView"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:nestedScrollingEnabled="false"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:itemCount="2"
+        tools:listitem="@layout/item_grid_image" />
+
+
+
+    <com.hjq.shape.layout.ShapeLinearLayout
+        android:id="@+id/sll_count"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/dp_5"
+        android:gravity="center"
+        android:orientation="horizontal"
+        android:paddingVertical="@dimen/dp_8"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/recyclerView"
+        app:shape_radius="@dimen/dp_10"
+        app:shape_solidGradientStartColor="@color/black"
+        app:shape_solidGradientEndColor="@color/black">
+
+        <ImageView
+            android:layout_width="@dimen/dp_20"
+            android:layout_height="@dimen/dp_20"
+            android:src="@drawable/iv_diamond" />
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:layout_marginStart="@dimen/dp_2"
+            android:id="@+id/tv_num"
+            style="@style/TextAppearance.App.Bold"
+            tools:text="Unlock all"
+            android:textStyle="bold"
+            android:layout_marginEnd="@dimen/dp_5"
+            android:textColor="@color/white"
+            android:textSize="@dimen/sp_14"
+             />
+    </com.hjq.shape.layout.ShapeLinearLayout>
+
+</com.hjq.shape.layout.ShapeConstraintLayout>

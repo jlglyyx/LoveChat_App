@@ -1,0 +1,418 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tool="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <com.yang.lovechat.widget.ErrorReLoadView
+        android:id="@+id/errorReLoadView"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/appToolBar"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center_vertical"
+                app:layout_constraintTop_toTopOf="parent">
+
+                <ImageView
+                    android:id="@+id/iv_back"
+                    android:layout_width="@dimen/dp_35"
+                    android:layout_height="@dimen/dp_35"
+
+                    android:layout_marginStart="@dimen/dp_6"
+                    android:padding="@dimen/dp_8"
+                    android:src="@drawable/iv_back"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <com.google.android.material.imageview.ShapeableImageView
+                    android:id="@+id/siv_avatar"
+                    android:layout_width="@dimen/dp_40"
+                    android:layout_height="@dimen/dp_40"
+                    android:layout_marginVertical="@dimen/dp_8"
+                    android:layout_marginStart="@dimen/dp_5"
+                    android:scaleType="centerCrop"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintStart_toEndOf="@+id/iv_back"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:shapeAppearanceOverlay="@style/circleStyle" />
+
+                <com.hjq.shape.view.ShapeTextView
+                    android:id="@+id/stv_aline"
+                    android:layout_width="@dimen/dp_9"
+                    android:layout_height="@dimen/dp_9"
+                    android:gravity="center"
+                    app:layout_constraintBottom_toBottomOf="@+id/siv_avatar"
+                    app:layout_constraintEnd_toEndOf="@+id/siv_avatar"
+                    app:shape_radius="@dimen/dp_30"
+                    app:shape_solidColor="@color/onlineColor" />
+
+                <TextView
+                    android:id="@+id/tv_name"
+                    style="@style/TextAppearance.App.Bold"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/dp_10"
+                    android:ellipsize="middle"
+                    android:maxEms="7"
+                    android:singleLine="true"
+                    android:textColor="@color/white"
+                    android:textSize="@dimen/sp_18"
+                    app:layout_constrainedWidth="true"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintStart_toEndOf="@+id/siv_avatar"
+                    app:layout_constraintTop_toTopOf="parent"
+                    tool:text="Name" />
+
+                <ImageView
+                    android:id="@+id/iv_vip"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/dp_6"
+                    android:src="@drawable/iv_crown"
+                    android:visibility="gone"
+                    app:layout_constraintBottom_toBottomOf="@+id/tv_name"
+                    app:layout_constraintStart_toEndOf="@+id/tv_name"
+                    app:layout_constraintTop_toTopOf="@+id/tv_name" />
+
+                <ImageView
+                    android:id="@+id/iv_more"
+                    android:layout_width="@dimen/dp_35"
+                    android:layout_height="@dimen/dp_35"
+                    android:layout_marginEnd="@dimen/dp_10"
+                    android:padding="@dimen/dp_5"
+                    android:src="@drawable/iv_more"
+                    android:visibility="visible"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+            <androidx.core.widget.NestedScrollView
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/appToolBar">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:paddingBottom="@dimen/dp_20">
+
+                    <androidx.constraintlayout.widget.ConstraintLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content">
+
+
+                        <com.youth.banner.Banner
+                            android:id="@+id/banner"
+                            android:layout_width="match_parent"
+                            android:layout_height="0dp"
+                            app:layout_constraintDimensionRatio="1:1.5"
+                            app:layout_constraintTop_toTopOf="parent" />
+
+
+                        <com.hjq.shape.view.ShapeView
+                            android:layout_width="0dp"
+                            android:layout_height="0dp"
+                            app:layout_constraintEnd_toEndOf="@+id/banner"
+                            app:layout_constraintHeight_percent="0.2"
+                            app:layout_constraintStart_toStartOf="@+id/banner"
+                            app:layout_constraintTop_toTopOf="@+id/banner"
+                            app:shape_radiusInBottomLeft="@dimen/dp_20"
+                            app:shape_radiusInBottomRight="@dimen/dp_20"
+                            app:shape_solidGradientEndColor="@color/black_50"
+                            app:shape_solidGradientOrientation="bottomToTop"
+                            app:shape_solidGradientStartColor="@color/transparent" />
+
+                        <LinearLayout
+                            android:id="@+id/ll_indicator"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_marginHorizontal="@dimen/dp_10"
+                            android:layout_marginTop="@dimen/dp_10"
+                            android:gravity="center"
+                            android:orientation="horizontal"
+                            app:layout_constraintEnd_toEndOf="@+id/banner"
+                            app:layout_constraintStart_toStartOf="@+id/banner"
+                            app:layout_constraintTop_toTopOf="@+id/banner">
+
+                            <com.youth.banner.indicator.RectangleIndicator
+                                android:id="@+id/mIndicator"
+                                android:layout_width="match_parent"
+                                android:layout_height="@dimen/dp_4" />
+                        </LinearLayout>
+
+                        <com.hjq.shape.view.ShapeView
+                            android:layout_width="0dp"
+                            android:layout_height="0dp"
+                            android:layout_gravity="bottom"
+                            app:layout_constraintBottom_toBottomOf="@+id/banner"
+                            app:layout_constraintEnd_toEndOf="@+id/banner"
+                            app:layout_constraintHeight_percent="0.3"
+                            app:layout_constraintStart_toStartOf="@+id/banner"
+                            app:shape_radiusInBottomLeft="@dimen/dp_20"
+                            app:shape_radiusInBottomRight="@dimen/dp_20"
+                            app:shape_solidGradientCenterColor="@color/black_50"
+                            app:shape_solidGradientEndColor="@color/black"
+                            app:shape_solidGradientOrientation="topToBottom"
+                            app:shape_solidGradientStartColor="@color/transparent" />
+
+
+                    </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+                    <com.hjq.shape.layout.ShapeLinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="-100dp"
+                        android:orientation="vertical">
+
+
+                        <TextView
+                            android:id="@+id/tv_location"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:drawablePadding="@dimen/dp_3"
+                            android:layout_marginHorizontal="@dimen/dp_15"
+                            android:text="Uninate KD,LogSng"
+                            android:textColor="@color/white"
+                            android:textSize="@dimen/sp_13"
+                            app:drawableStartCompat="@drawable/iv_location" />
+
+
+
+                        <com.hjq.shape.layout.ShapeLinearLayout
+                            android:id="@+id/scl_intent"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="vertical"
+                            android:paddingHorizontal="@dimen/dp_15"
+                            android:paddingTop="@dimen/dp_10">
+
+                            <TextView
+                                style="@style/TextAppearance.App.Bold"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="Hoping to find"
+                                android:textColor="@color/white"
+                                android:textSize="@dimen/sp_18" />
+
+                            <com.hjq.shape.view.ShapeTextView
+                                android:id="@+id/stv_intent"
+                                style="@style/TextAppearance.App.Bold"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="@dimen/dp_8"
+                                android:textColor="@color/white"
+                                android:textStyle="bold"
+                                android:textSize="@dimen/sp_20"
+                                tool:text="www" />
+
+                            <com.hjq.shape.view.ShapeTextView
+                                android:id="@+id/stv_bio"
+                                style="@style/TextAppearance.App.Bold"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="@dimen/dp_8"
+                                android:textColor="@color/color_999999"
+                                android:textSize="@dimen/sp_14"
+                                tool:text="www" />
+
+                        </com.hjq.shape.layout.ShapeLinearLayout>
+
+                        <com.hjq.shape.layout.ShapeLinearLayout
+                            android:id="@+id/scl_basic"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="vertical"
+                            android:paddingHorizontal="@dimen/dp_15"
+                            android:paddingTop="@dimen/dp_10">
+
+                            <TextView
+                                android:id="@+id/tv_basic"
+                                style="@style/TextAppearance.App.Bold"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="Info"
+                                android:textColor="@color/white"
+                                android:textSize="@dimen/sp_18" />
+
+
+                            <com.google.android.flexbox.FlexboxLayout
+                                android:id="@+id/flexboxLayout"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="@dimen/dp_8"
+                                android:gravity="center_vertical"
+                                android:orientation="horizontal"
+                                app:alignItems="stretch"
+                                app:flexDirection="row"
+                                app:flexWrap="wrap"
+                                app:justifyContent="flex_start">
+
+                                <com.hjq.shape.view.ShapeTextView
+                                    android:id="@+id/stv_age"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginEnd="@dimen/dp_12"
+                                    android:layout_marginBottom="@dimen/dp_12"
+                                    android:drawableStart="@drawable/iv_age"
+                                    android:drawablePadding="@dimen/dp_5"
+                                    android:gravity="center"
+                                    android:paddingHorizontal="@dimen/dp_10"
+                                    android:paddingVertical="@dimen/dp_4"
+                                    android:textColor="@color/white"
+                                    android:textSize="@dimen/sp_14"
+                                    app:shape_radius="@dimen/dp_5"
+                                    app:shape_strokeSize="@dimen/dp_1"
+                                    app:shape_solidColor="@color/color_4DC76BFF"
+                                    app:shape_strokeGradientEndColor="@color/endColor"
+                                    app:shape_strokeGradientStartColor="@color/startColor"
+                                    tool:text="Age:26" />
+
+                                <com.hjq.shape.view.ShapeTextView
+                                    android:id="@+id/stv_constellation"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginEnd="@dimen/dp_12"
+                                    android:layout_marginBottom="@dimen/dp_12"
+                                    android:drawableStart="@drawable/iv_constellation"
+                                    android:drawablePadding="@dimen/dp_5"
+                                    android:gravity="center"
+                                    android:paddingHorizontal="@dimen/dp_10"
+                                    android:paddingVertical="@dimen/dp_4"
+                                    android:textColor="@color/white"
+                                    android:textSize="@dimen/sp_14"
+                                    app:shape_radius="@dimen/dp_5"
+                                    app:shape_solidColor="@color/color_4DC76BFF"
+                                    app:shape_strokeGradientEndColor="@color/endColor"
+                                    app:shape_strokeGradientStartColor="@color/startColor"
+                                    app:shape_strokeSize="@dimen/dp_1"
+                                    tool:text="constellation" />
+
+                                <com.hjq.shape.view.ShapeTextView
+                                    android:id="@+id/stv_profession"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginEnd="@dimen/dp_12"
+                                    android:layout_marginBottom="@dimen/dp_12"
+                                    android:drawableStart="@drawable/iv_profession"
+                                    android:drawablePadding="@dimen/dp_5"
+                                    android:gravity="center"
+                                    android:paddingHorizontal="@dimen/dp_10"
+                                    android:paddingVertical="@dimen/dp_4"
+                                    android:textColor="@color/white"
+                                    android:textSize="@dimen/sp_14"
+                                    app:shape_radius="@dimen/dp_5"
+                                    app:shape_solidColor="@color/color_4DC76BFF"
+                                    app:shape_strokeGradientEndColor="@color/endColor"
+                                    app:shape_strokeGradientStartColor="@color/startColor"
+                                    app:shape_strokeSize="@dimen/dp_1"
+                                    tool:text="constellation" />
+
+                                <com.hjq.shape.view.ShapeTextView
+                                    android:id="@+id/stv_height"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginEnd="@dimen/dp_12"
+                                    android:layout_marginBottom="@dimen/dp_12"
+                                    android:drawableStart="@drawable/iv_height"
+                                    android:drawablePadding="@dimen/dp_5"
+                                    android:gravity="center"
+                                    android:paddingHorizontal="@dimen/dp_10"
+                                    android:paddingVertical="@dimen/dp_4"
+                                    android:textColor="@color/white"
+                                    android:textSize="@dimen/sp_14"
+                                    app:shape_radius="@dimen/dp_5"
+                                    app:shape_solidColor="@color/color_4DC76BFF"
+                                    app:shape_strokeGradientEndColor="@color/endColor"
+                                    app:shape_strokeGradientStartColor="@color/startColor"
+                                    app:shape_strokeSize="@dimen/dp_1"
+                                    tool:text="Height:165cm" />
+
+                                <com.hjq.shape.view.ShapeTextView
+                                    android:id="@+id/stv_weight"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginEnd="@dimen/dp_12"
+                                    android:layout_marginBottom="@dimen/dp_12"
+                                    android:drawableStart="@drawable/iv_weight"
+                                    android:drawablePadding="@dimen/dp_5"
+                                    android:gravity="center"
+                                    android:paddingHorizontal="@dimen/dp_10"
+                                    android:paddingVertical="@dimen/dp_4"
+                                    android:textColor="@color/white"
+                                    android:textSize="@dimen/sp_14"
+                                    app:shape_radius="@dimen/dp_5"
+                                    app:shape_solidColor="@color/color_4DC76BFF"
+                                    app:shape_strokeGradientEndColor="@color/endColor"
+                                    app:shape_strokeGradientStartColor="@color/startColor"
+                                    app:shape_strokeSize="@dimen/dp_1"
+                                    tool:text="Weight:50kg" />
+
+
+                            </com.google.android.flexbox.FlexboxLayout>
+
+
+                        </com.hjq.shape.layout.ShapeLinearLayout>
+
+
+                        <com.hjq.shape.layout.ShapeLinearLayout
+                            android:id="@+id/scl_interest"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="vertical"
+                            android:paddingHorizontal="@dimen/dp_15"
+                            android:paddingTop="@dimen/dp_10">
+
+                            <TextView
+                                style="@style/TextAppearance.App.Bold"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="Interests"
+                                android:textColor="@color/white"
+                                android:textSize="@dimen/sp_18" />
+
+
+                           <androidx.recyclerview.widget.RecyclerView
+                               android:layout_width="match_parent"
+                               android:layout_height="wrap_content"
+                               android:nestedScrollingEnabled="false"
+                               tool:itemCount="1"
+                               android:layout_marginTop="@dimen/dp_6"
+                               android:id="@+id/interest_recycler_view"/>
+
+
+                        </com.hjq.shape.layout.ShapeLinearLayout>
+
+
+                    </com.hjq.shape.layout.ShapeLinearLayout>
+
+
+                </LinearLayout>
+
+
+            </androidx.core.widget.NestedScrollView>
+
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </com.yang.lovechat.widget.ErrorReLoadView>
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

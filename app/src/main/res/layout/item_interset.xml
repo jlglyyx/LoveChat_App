@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.hjq.shape.layout.ShapeLinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    app:shape_radius="@dimen/dp_5"
+    android:orientation="horizontal"
+    android:paddingVertical="@dimen/dp_4"
+    android:paddingHorizontal="@dimen/dp_10"
+    android:gravity="center"
+    android:id="@+id/sll_container"
+    android:layout_marginBottom="@dimen/dp_10"
+    android:layout_marginEnd="@dimen/dp_10"
+    app:shape_solidGradientStartColor="@color/color_222222"
+    app:shape_solidGradientEndColor="@color/color_222222"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+   >
+
+    <TextView
+        android:id="@+id/tv_title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textColor="@color/white"
+        android:textSize="@dimen/sp_14" />
+
+
+</com.hjq.shape.layout.ShapeLinearLayout>

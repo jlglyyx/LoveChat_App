@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/color_08070F"
+    android:clickable="true"
+    android:gravity="center"
+    android:orientation="vertical">
+
+
+    <ImageView
+        android:id="@+id/iv_image"
+        android:layout_width="@dimen/dp_80"
+        android:layout_height="@dimen/dp_80"
+        android:layout_marginBottom="@dimen/dp_20"
+        android:src="@drawable/iv_like" />
+
+    <TextView
+        android:id="@+id/tv_title"
+        style="@style/TextAppearance.App.Bold"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="@dimen/dp_25"
+        android:layout_marginBottom="@dimen/dp_5"
+        android:gravity="center"
+        android:text="No matches for now"
+        android:textColor="@color/white"
+        android:textSize="@dimen/sp_18" />
+
+    <TextView
+        android:id="@+id/tv_desc"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="@dimen/dp_25"
+        android:gravity="center"
+        android:text="Improve your profile to get more likes"
+        android:textColor="@color/white"
+        android:textSize="@dimen/sp_14" />
+
+    <com.hjq.shape.view.ShapeTextView
+        android:id="@+id/stv_confirm"
+        style="@style/TextAppearance.App.Bold"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="@dimen/dp_25"
+        android:layout_marginTop="@dimen/dp_25"
+        android:gravity="center"
+        android:paddingVertical="@dimen/dp_15"
+        android:text="Optimize My Profile"
+        android:textColor="@color/white"
+        android:textSize="@dimen/sp_16"
+        app:shape_radius="@dimen/dp_10"
+        app:shape_solidColor="@color/color_C76BFF"
+        app:shape_solidGradientEndColor="@color/endColor"
+        app:shape_solidGradientStartColor="@color/startColor"
+        app:shape_solidPressedColor="@color/pressedColor" />
+</LinearLayout>

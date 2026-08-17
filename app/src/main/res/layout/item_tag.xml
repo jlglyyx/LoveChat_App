@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <com.hjq.shape.view.ShapeTextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="like"
+        android:id="@+id/stv_tag"
+        app:shape_solidColor="@color/color_4DFF5ACD"
+        android:paddingHorizontal="@dimen/dp_8"
+        android:paddingVertical="@dimen/dp_3"
+        android:layout_marginEnd="@dimen/dp_5"
+        android:layout_marginBottom="@dimen/dp_8"
+        app:shape_strokeGradientEndColor="@color/transparent"
+        app:shape_strokeGradientStartColor="@color/transparent"
+        app:shape_strokeSize="@dimen/dp_1"
+        app:shape_radius="@dimen/dp_5"
+        android:textColor="@color/white"
+        android:textSize="@dimen/sp_13"/>
+
+</LinearLayout>

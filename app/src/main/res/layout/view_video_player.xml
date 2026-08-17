@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <androidx.media3.ui.PlayerView
+        android:id="@+id/pv_video"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        app:resize_mode="zoom"
+        app:surface_type="texture_view"
+        app:use_controller="false" />
+
+    <ImageView
+        android:id="@+id/iv_cover"
+        android:scaleType="centerCrop"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" />
+
+    <ImageView
+        android:id="@+id/iv_play"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:src="@drawable/iv_play"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintDimensionRatio="1:1"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintWidth_percent="0.15" />
+
+    <com.hjq.shape.view.ShapeView
+        android:id="@+id/sv_top"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/dp_0"
+        app:layout_constraintHeight_percent="0.2"
+        app:layout_constraintTop_toTopOf="parent"
+        app:shape_solidGradientEndColor="@color/transparent"
+        app:shape_solidGradientOrientation="topToBottom"
+        app:shape_solidGradientStartColor="@color/black_50" />
+
+    <com.hjq.shape.view.ShapeView
+        android:id="@+id/sv_bottom"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/dp_0"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintHeight_percent="0.2"
+        app:shape_solidGradientEndColor="@color/transparent"
+        app:shape_solidGradientOrientation="bottomToTop"
+        app:shape_solidGradientStartColor="@color/black_50" />
+
+    <TextView
+        android:id="@+id/tv_to_progress"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="@dimen/dp_8"
+        android:textColor="@color/white"
+        android:textSize="@dimen/sp_14"
+        android:visibility="gone"
+        app:layout_constraintBottom_toTopOf="@+id/video_progress"
+        app:layout_constraintEnd_toEndOf="@+id/video_progress"
+        app:layout_constraintStart_toStartOf="@+id/video_progress" />
+
+    <androidx.appcompat.widget.AppCompatSeekBar
+        android:id="@+id/video_progress"
+        android:layout_width="0dp"
+        android:layout_height="@dimen/dp_20"
+        android:layout_marginStart="@dimen/dp_10"
+        android:layout_marginEnd="@dimen/dp_110"
+        android:layout_marginBottom="@dimen/dp_10"
+        android:thumb="@drawable/shape_video_player_thumb"
+        android:progressDrawable="@drawable/layer_video_player_progress"
+        android:max="100"
+        android:background="@null"
+        android:paddingVertical="@dimen/dp_8"
+        android:thumbOffset="0dp"
+        android:paddingStart="0dp"
+        android:paddingEnd="0dp"
+        android:splitTrack="false"
+        android:thumbTint="@color/transparent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <TextView
+        android:id="@+id/tv_progress"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:layout_marginEnd="@dimen/dp_10"
+        android:text="00:00 / 00:00"
+        android:textColor="@color/white"
+        android:textSize="@dimen/sp_14"
+        app:layout_constraintBottom_toBottomOf="@+id/video_progress"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/video_progress" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

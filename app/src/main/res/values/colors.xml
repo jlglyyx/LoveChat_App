@@ -1,0 +1,165 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+
+
+    <color name="white">#FFFFFF</color><!--白色-->
+    <color name="white_10">#19FFFFFF</color>    <!-- 10% 透明度 -->
+    <color name="white_20">#33FFFFFF</color>    <!-- 20% 透明度 -->
+    <color name="white_30">#4DFFFFFF</color>    <!-- 30% 透明度 -->
+    <color name="white_40">#66FFFFFF</color>    <!-- 40% 透明度 -->
+    <color name="white_50">#80FFFFFF</color>    <!-- 50% 透明度 -->
+    <color name="white_60">#99FFFFFF</color>    <!-- 60% 透明度 -->
+    <color name="white_70">#B3FFFFFF</color>    <!-- 70% 透明度 -->
+    <color name="white_80">#CCFFFFFF</color>    <!-- 80% 透明度 -->
+    <color name="white_90">#E6FFFFFF</color>    <!-- 90% 透明度 -->
+    <color name="white_100">#FFFFFF</color>     <!-- 100% 不透明 -->
+
+    <color name="black">#000000</color><!--白色-->
+    <color name="black_10">#19000000</color>    <!-- 10% 透明度 -->
+    <color name="black_20">#33000000</color>    <!-- 20% 透明度 -->
+    <color name="black_30">#4D000000</color>    <!-- 30% 透明度 -->
+    <color name="black_40">#66000000</color>    <!-- 40% 透明度 -->
+    <color name="black_50">#80000000</color>    <!-- 50% 透明度 -->
+    <color name="black_60">#99000000</color>    <!-- 60% 透明度 -->
+    <color name="black_70">#B3000000</color>    <!-- 70% 透明度 -->
+    <color name="black_80">#CC000000</color>    <!-- 80% 透明度 -->
+    <color name="black_90">#E6000000</color>    <!-- 90% 透明度 -->
+    <color name="black_100">#000000</color>     <!-- 100% 不透明 -->
+
+    <color name="transparent">@android:color/transparent</color>
+
+    <color name="color_333333">#333333</color>
+    <color name="color_666666">#666666</color>
+    <color name="color_999999">#999999</color>
+    <color name="color_D2D2DF">#D2D2DF</color>
+    <color name="color_A0A0B3">#A0A0B3</color>
+    <color name="color_4DC76BFF">#4DC76BFF</color>
+    <color name="color_4DFF5ACD">#4DFF5ACD</color>
+    <color name="color_08070F">#08070F</color>
+    <color name="color_10101B">#10101B</color>
+    <color name="color_121212">#121212</color>
+    <color name="color_222222">#222222</color>
+    <color name="color_1E1A33">#1E1A33</color>
+    <color name="color_B45CFF">#B45CFF</color>
+    <color name="color_C76BFF">#C76BFF</color>
+    <color name="color_FF5ACD">#FF5ACD</color>
+    <color name="color_00E676">#00E676</color>
+    <color name="color_FFC857">#FFC857</color>
+    <color name="color_B98B2F">#B98B2F</color>
+    <color name="color_C5C5C5">#C5C5C5</color>
+    <color name="color_FF0000">#FF0000</color>
+    <color name="color_FF9800">#FF9800</color>
+    <color name="color_FFE18A">#FFE18A</color>
+    <color name="color_2B1F0C">#2B1F0C</color>
+    <color name="color_252525">#252525</color>
+    <color name="color_D9D9D9">#D9D9D9</color>
+    <color name="color_202020">#202020</color>
+    <color name="color_2D2D2D">#2D2D2D</color>
+
+
+
+    <color name="messageCountColor">@color/color_FF5ACD</color>
+    <color name="pressedColor">#26FF85DD</color>
+    <color name="textColor">@color/color_333333</color>
+
+    <color name="startColor">@color/color_FF5ACD</color>
+    <color name="endColor">@color/color_FF5ACD</color>
+    <color name="onlineColor">@color/color_00E676</color>
+    <color name="lineColor">@color/color_999999</color>
+
+
+
+
+    <!-- =======================================
+                Pulse Theme
+      Deep Black + Neon Purple + Pink
+======================================= -->
+
+    <!-- 主背景（深夜黑） -->
+    <color name="color_bg">#08070F</color>
+
+
+    <!-- 次级背景 -->
+    <color name="color_bg_secondary">#10101B</color>
+
+    <!-- 卡片背景 -->
+    <color name="color_card">#171625</color>
+
+    <!-- 浮层背景 -->
+    <color name="color_surface">#1E1A33</color>
+
+
+
+    <!-- 二级文字 -->
+    <color name="color_text_secondary">#D2D2DF</color>
+
+    <!-- 提示文字 -->
+    <color name="color_text_hint">#A0A0B3</color>
+
+    <!-- =======================================
+                    品牌色
+    ======================================= -->
+
+    <!-- 主品牌紫 -->
+    <color name="color_primary">#B45CFF</color>
+
+    <!-- 高亮紫 -->
+    <color name="color_primary_light">#D46DFF</color>
+
+    <!-- 霓虹紫 -->
+    <color name="color_neon_purple">#C76BFF</color>
+
+    <!-- 桃粉色 -->
+    <color name="color_pink">#FF5ACD</color>
+
+    <!-- 桃粉高亮 -->
+    <color name="color_pink_light">#FF85DD</color>
+
+    <!-- =======================================
+                    功能色
+    ======================================= -->
+
+    <!-- 在线状态 -->
+    <color name="color_online">#00E676</color>
+
+    <!-- 已认证 -->
+    <color name="color_verified">#4EA5FF</color>
+
+    <!-- 警告 -->
+    <color name="color_warning">#FF9800</color>
+
+    <!-- =======================================
+                    Premium
+    ======================================= -->
+
+    <!-- VIP金色 -->
+    <color name="color_gold">#FFC857</color>
+
+    <!-- 高亮金 -->
+    <color name="color_gold_light">#FFE18A</color>
+
+    <!-- Premium背景 -->
+    <color name="color_gold_bg">#2B1F0C</color>
+
+    <!-- Premium描边 -->
+    <color name="color_gold_stroke">#B98B2F</color>
+
+
+
+<!--    6E6A86-->
+<!--    C76BFF-->
+
+<!--    Connect按钮（赚钱按钮）-->
+<!--    <gradient-->
+<!--        android:startColor="#B45CFF"-->
+<!--        android:endColor="#FF5ACD"-->
+<!--        android:angle="0"/>-->
+
+<!--    VIP按钮-->
+<!--    <gradient-->
+<!--        android:startColor="#FFC857"-->
+<!--        android:endColor="#FFE18A"-->
+<!--        android:angle="0"/>-->
+
+</resources>
