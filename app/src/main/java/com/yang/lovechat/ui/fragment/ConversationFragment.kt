@@ -30,7 +30,6 @@ import com.yang.lovechat.dialog.OpenNoticeDialog
 import com.yang.lovechat.helper.IMHelper
 import com.yang.lovechat.im.MessageManager
 import com.yang.lovechat.ui.activity.MessageActivity
-import com.yang.lovechat.ui.activity.SystemMessageActivity
 import com.yang.lovechat.util.clicks
 import com.yang.lovechat.util.createIntent
 import com.yang.lovechat.util.getCache
@@ -140,12 +139,6 @@ class ConversationFragment :
                 requestNoticePermission()
 
             }
-
-            ivSystemNotice.clicks {
-
-                createIntent(SystemMessageActivity::class.java).startActivity(requireActivity())
-            }
-
 
 
             initRecyclerView()

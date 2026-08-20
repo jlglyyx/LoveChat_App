@@ -51,18 +51,10 @@
         <activity android:name=".ui.activity.LoginActivity"/>
         <activity android:name=".ui.activity.MainActivity"/>
         <activity android:name=".ui.activity.WebActivity"/>
-        <activity android:name=".ui.activity.AStepActivity"/>
-        <activity android:name=".ui.activity.BStepActivity"/>
-        <activity android:name=".ui.activity.CStepActivity"/>
         <activity android:name=".ui.activity.MessageActivity"/>
 
         <activity android:name=".ui.activity.SettingActivity"/>
         <activity android:name=".ui.activity.UserInfoActivity"/>
-        <activity android:name=".ui.activity.EditUserInfoActivity"/>
-        <activity android:name=".ui.activity.ReportActivity"/>
-        <activity android:name=".ui.activity.FeedBackActivity"/>
-        <activity android:name=".ui.activity.DeleteAccountActivity"/>
-        <activity android:name=".ui.activity.SystemMessageActivity"/>
     </application>
 
 </manifest>

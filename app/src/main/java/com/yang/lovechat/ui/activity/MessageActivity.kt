@@ -43,7 +43,6 @@ import com.yang.lovechat.helper.IMHelper
 import com.yang.lovechat.helper.MediaHelper.getVideoDuration
 import com.yang.lovechat.helper.MediaHelper.isVideo
 import com.yang.lovechat.helper.PhotoPickerHelper
-import com.yang.lovechat.helper.ProductHelper
 import com.yang.lovechat.helper.UserInfoHold
 import com.yang.lovechat.http.IHttpException
 import com.yang.lovechat.im.MessageManager
@@ -357,11 +356,7 @@ class MessageActivity :
 
             if (it is IHttpException.HttpErrorException) {
 
-                if (it.code == ResultEnum.NEED_VIP_PERMISSION_ERROR.code) {
-                    ProductHelper.showPayProductDialog(this, AppConstant.Constant.PRODUCT_VIP)
-                } else if (it.code == ResultEnum.NEED_DIAMOND_ERROR.code) {
-                    ProductHelper.showPayProductDialog(this, AppConstant.Constant.PRODUCT_DIAMOND)
-                }
+
 
             }
 
@@ -570,10 +565,7 @@ class MessageActivity :
                                 )
 
                             } else {
-                                ProductHelper.showPayProductDialog(
-                                    this@MessageActivity,
-                                    AppConstant.Constant.PRODUCT_VIP
-                                )
+
                             }
 
 

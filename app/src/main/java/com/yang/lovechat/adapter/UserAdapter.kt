@@ -22,7 +22,7 @@ import kotlin.ranges.coerceAtLeast
 import kotlin.ranges.coerceAtMost
 import kotlin.text.isNullOrEmpty
 
-class CardAdapter :
+class UserAdapter :
     BaseRecyclerAdapter<UserInfoData, ItemCardBinding>(ItemCardBinding::inflate) {
 
 

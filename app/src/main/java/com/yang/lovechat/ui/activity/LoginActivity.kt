@@ -31,26 +31,6 @@ import kotlin.jvm.java
 class LoginActivity : BaseActivity<ActLoginBinding, MainViewModel>(ActLoginBinding::inflate) {
 
 
-    private var mGoogleLoginUtil: GoogleLoginUtil? = GoogleLoginUtil()
-
-    private val googleLogin: ActivityResultLauncher<Intent> =
-        registerForActivityResult(
-            ActivityResultContracts.StartActivityForResult()
-        ) { result ->
-            val data = result.data
-
-            mGoogleLoginUtil?.handleLoginResult(data, onSuccess = {
-
-                mViewModel.login(AppConstant.Constant.GOOGLE, it, "")
-
-            }, onError = {
-
-                showShort(it)
-            })
-        }
-
-
-
 
     override fun initView() {
 
@@ -81,27 +61,7 @@ class LoginActivity : BaseActivity<ActLoginBinding, MainViewModel>(ActLoginBindi
 
 
             }
-            sllGoogleLogin.clicks {
 
-
-                if (getCache(AppConstant.Constant.IS_VPN,"False") == "True" && isVpnConnected(this@LoginActivity)){
-
-                    initNoticeDialog(false)
-
-                    return@clicks
-                }
-
-
-                initPrivacyNoticeDialog{
-
-                    val startLogin = mGoogleLoginUtil?.startLogin(this@LoginActivity)
-
-                    startLogin?.let { googleLogin.launch(startLogin) }
-
-                    showLoading()
-                }
-
-            }
 
 
         }
@@ -162,14 +122,7 @@ class LoginActivity : BaseActivity<ActLoginBinding, MainViewModel>(ActLoginBindi
 
             dismissLoading()
 
-            if (it.firstLogin) {
-
-                createIntent(AStepActivity::class.java).startActivity(this, true)
-
-            } else {
-
-                createIntent(MainActivity::class.java).startActivity(this, true)
-            }
+            createIntent(MainActivity::class.java).startActivity(this, true)
 
         }
 
@@ -240,16 +193,4 @@ class LoginActivity : BaseActivity<ActLoginBinding, MainViewModel>(ActLoginBindi
 
 
 
-
-
-
-    override fun onDestroy() {
-
-
-        mGoogleLoginUtil?.remove()
-
-        mGoogleLoginUtil = null
-
-        super.onDestroy()
-    }
 }

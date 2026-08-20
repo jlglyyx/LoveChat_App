@@ -4,7 +4,6 @@ import com.yang.lovechat.data.AppVersion
 import com.yang.lovechat.data.ConversationData
 import com.yang.lovechat.data.MediaInfoData
 import com.yang.lovechat.data.MessageData
-import com.yang.lovechat.data.ProductData
 import com.yang.lovechat.data.TagConfigData
 import com.yang.lovechat.data.UpdateUserInfoData
 import com.yang.lovechat.data.UserInfoData
@@ -20,7 +19,7 @@ interface ApiService {
     @POST("api/app/checkNewVersion")
     suspend fun checkNewVersion(): MResult<AppVersion>
 
-    @POST("api/user/login")
+    @POST("api/chatter/login")
     suspend fun login(@Body mutableMap: MutableMap<String,Any?>): MResult<UserInfoData>
 
     @POST("api/user/getUserInfo")
@@ -113,20 +112,6 @@ interface ApiService {
 
 
 
-
-    @POST("api/order/createOrder")
-    suspend fun createOrder(@Body mutableMap: MutableMap<String,Any?>): MResult<String>
-
-    @POST("api/order/payOrder")
-    suspend fun payOrder(@Body mutableMap: MutableMap<String,Any?>): MResult<Boolean>
-
-
-
-
-
-
-    @POST("api/product/getProductInfoList")
-    suspend fun getProductInfoList(@Body mutableMap: MutableMap<String,Any?>): MResult<ProductData>
 
     @POST("api/user/deleteUser")
     suspend fun deleteUser(): MResult<Boolean>

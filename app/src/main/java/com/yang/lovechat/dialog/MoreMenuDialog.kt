@@ -6,12 +6,12 @@ import android.view.View
 import com.yang.lovechat.base.dialog.BaseDialog
 import com.yang.lovechat.constant.AppConstant
 import com.yang.lovechat.databinding.DialogMoreMenuBinding
-import com.yang.lovechat.ui.activity.ReportActivity
 import com.yang.lovechat.util.clicks
 import com.yang.lovechat.util.createIntent
 import com.yang.lovechat.util.edgeToEdgeBottom
 import com.yang.lovechat.util.startActivity
 import kotlin.apply
+import kotlin.jvm.java
 
 class MoreMenuDialog : BaseDialog<DialogMoreMenuBinding>(DialogMoreMenuBinding::inflate) {
 
@@ -57,10 +57,6 @@ class MoreMenuDialog : BaseDialog<DialogMoreMenuBinding>(DialogMoreMenuBinding::
             }
             tvRetort.clicks {
 
-                createIntent(ReportActivity::class.java)
-                    .putExtra(AppConstant.Constant.ID, eventId!!)
-                    .putExtra(AppConstant.Constant.TYPE, eventType!!)
-                    .startActivity(requireActivity())
 
                 dismissAllowingStateLoss()
             }

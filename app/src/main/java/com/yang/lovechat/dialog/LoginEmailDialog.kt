@@ -18,7 +18,6 @@ import com.yang.lovechat.base.dialog.BaseDialog
 import com.yang.lovechat.constant.AppConstant
 import com.yang.lovechat.databinding.DialogLoginEmailBinding
 import com.yang.lovechat.databinding.ItemEmailMenuBinding
-import com.yang.lovechat.ui.activity.AStepActivity
 import com.yang.lovechat.ui.activity.MainActivity
 import com.yang.lovechat.util.clicks
 import com.yang.lovechat.util.copyContent
@@ -31,6 +30,7 @@ import com.yang.lovechat.util.startActivity
 import com.yang.lovechat.viewmodel.MainViewModel
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
+import kotlin.jvm.java
 
 class LoginEmailDialog : BaseDialog<DialogLoginEmailBinding>(DialogLoginEmailBinding::inflate) {
 
@@ -174,7 +174,7 @@ class LoginEmailDialog : BaseDialog<DialogLoginEmailBinding>(DialogLoginEmailBin
 
             if (it.firstLogin) {
 
-                createIntent(AStepActivity::class.java).startActivity(requireActivity(), true)
+                createIntent(MainActivity::class.java).startActivity(requireActivity(), true)
 
             } else {
 

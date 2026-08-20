@@ -1,8 +1,6 @@
 package com.yang.lovechat.viewmodel
 
 import android.net.Uri
-import androidx.lifecycle.viewModelScope
-import com.android.billingclient.api.Purchase
 import com.yang.lovechat.api.ApiService
 import com.yang.lovechat.base.bus.EventBus
 import com.yang.lovechat.base.bus.EventBus.postValue
@@ -12,7 +10,6 @@ import com.yang.lovechat.constant.AppConstant
 import com.yang.lovechat.data.MediaInfoData
 import com.yang.lovechat.data.MessageData
 import com.yang.lovechat.data.MessageResultData
-import com.yang.lovechat.data.ProductData
 import com.yang.lovechat.data.TagConfigData
 import com.yang.lovechat.data.UpdateMediaInfoData
 import com.yang.lovechat.data.UpdateUserInfoData
@@ -24,15 +21,10 @@ import com.yang.lovechat.helper.UserInfoHold
 import com.yang.lovechat.helper.UserInfoHold.updateLocalUserInfo
 import com.yang.lovechat.http.HttpClient.createService
 import com.yang.lovechat.util.formatListJson
-import com.yang.lovechat.util.fromJson
 import com.yang.lovechat.util.getCache
 import com.yang.lovechat.util.setCache
 import com.yang.lovechat.util.showShort
 import com.yang.lovechat.util.toJson
-import kotlinx.coroutines.delay
-import kotlinx.coroutines.launch
-import kotlin.collections.forEachIndexed
-import kotlin.collections.map
 
 open class PublicViewModel : BaseViewModel() {
 
@@ -59,7 +51,6 @@ open class PublicViewModel : BaseViewModel() {
 
     val mUploadMediaListData = SingleFlow<MutableList<UploadPictureData>>()
 
-    val mProductData = SingleFlow<ProductData>()
 
     val mOrderNoData = SingleFlow<String>()
 
@@ -343,179 +334,15 @@ open class PublicViewModel : BaseViewModel() {
 
 
 
-    fun preCacheProductInfo() {
 
-        getProductInfoList(AppConstant.Constant.PRODUCT_VIP)
 
-        getProductInfoList(AppConstant.Constant.PRODUCT_DIAMOND)
 
 
-    }
 
 
-    fun getProductInfoList(productType: Int) {
 
-        val productInfoCache = getProductInfoCache(productType)
 
-        val params = mutableMapOf<String, Any?>()
 
-        //0 1 vip
-        params["productType"] = productType
-
-        launch({
-
-            mApiService.getProductInfoList(params)
-
-        }, {
-
-
-            cacheVipInfo(it.data, productType)
-
-            if (null == productInfoCache || productInfoCache.productInfo.size != it.data.productInfo.size) {
-
-                mProductData.postValue(it.data)
-            }
-
-
-        })
-
-    }
-
-
-    fun getProductInfoCache(productType: Int): ProductData? {
-
-        val cache = getCache(AppConstant.Constant.PRODUCT_CACHE + productType, "")
-
-        if (cache.isNotEmpty()) {
-
-            val mCacheProductInfoData = cache.fromJson<ProductData>()
-
-            viewModelScope.launch {
-
-                delay(10)
-
-                mProductData.postValue(mCacheProductInfoData)
-
-            }
-
-            return mCacheProductInfoData
-
-        } else {
-
-            return null
-        }
-
-    }
-
-
-    suspend fun cacheVipInfo(mProductData: ProductData, productType: Int) {
-
-//        if (!PayManager.isClient()) {
-//
-//            setCache(AppConstant.Constant.PRODUCT_CACHE + productType, mProductData)
-//
-//            return
-//        }
-//
-//        val skuCodes = mProductData.productInfo.map { map ->
-//
-//            map.skuCode
-//        }
-//
-//        val queryProductPrice = PayManager.queryProductPrice(skuCodes, mVipInfoData.subscription)
-//
-//        queryProductPrice?.productDetailsList?.forEachIndexed { index, productDetails ->
-//
-//            val item =
-//                mProductData.productInfo.findLast { find -> find.skuCode == productDetails.productId }
-//
-//            if (mVipInfoData.subscription == "True") {
-//                val product = productDetails.subscriptionOfferDetails?.get(0)
-//                item?.formatMoney =
-//                    product?.pricingPhases?.pricingPhaseList?.get(0)?.formattedPrice.toString()
-//                product?.pricingPhases?.pricingPhaseList?.get(0)?.priceCurrencyCode.toString()
-//            } else {
-//                val product = productDetails.oneTimePurchaseOfferDetailsList?.get(0)
-//                item?.formatMoney = product?.formattedPrice.toString()
-//            }
-//
-//        }
-        setCache(AppConstant.Constant.PRODUCT_CACHE + productType, mProductData)
-    }
-
-
-    fun createOrder(skuCode: String) {
-
-        val params = mutableMapOf<String, Any?>()
-
-        params["skuCode"] = skuCode
-
-        launch({
-
-            mApiService.createOrder(params)
-
-        }, {
-
-            mOrderNoData.postValue(it.data)
-
-        })
-
-    }
-
-    fun payOrder(orderNO: String, mPurchase: Purchase) {
-
-        val params = mutableMapOf<String, Any?>()
-
-        params["orderNO"] = orderNO
-
-        params["googleOrderId"] = mPurchase.orderId
-
-        params["googlePurchaseToken"] = mPurchase.purchaseToken
-
-        params["skuCode"] = mPurchase.products[0]
-
-        launch({
-
-            mApiService.payOrder(params)
-
-        }, {
-
-
-        })
-
-    }
-
-    fun payOrderTest(orderNO: String) {
-
-        val params = mutableMapOf<String, Any?>()
-
-        params["orderNO"] = orderNO
-
-        params["googleOrderId"] = "${System.currentTimeMillis()}googleOrderId"
-
-        params["googlePurchaseToken"] = "${System.currentTimeMillis()}googlePurchaseToken"
-
-        params["skuCode"] = "xxxxxxxx"
-
-        launch({
-
-            mApiService.payOrder(params)
-
-        }, {
-
-
-            mPayOrderStatusData.postValue(true)
-
-            UserInfoHold.userId?.let { userId ->
-                getUserInfo(userId)
-            }
-
-        }, onErrorHandle = {
-
-            mPayOrderStatusData.postValue(false)
-        })
-
-    }
 
 
     fun getAllConversationReadCount() {

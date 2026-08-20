@@ -50,8 +50,6 @@ class SettingActivity : BaseActivity<ActSettingBinding, MainViewModel>(ActSettin
             }
             sllFeedback.clicks {
 
-                createIntent(FeedBackActivity::class.java)
-                    .startActivity(this@SettingActivity)
             }
 
 
@@ -69,7 +67,6 @@ class SettingActivity : BaseActivity<ActSettingBinding, MainViewModel>(ActSettin
             }
 
             sllDelete.clicks {
-                createIntent(DeleteAccountActivity::class.java).startActivity(this@SettingActivity)
             }
             sllLoginOut.clicks {
 

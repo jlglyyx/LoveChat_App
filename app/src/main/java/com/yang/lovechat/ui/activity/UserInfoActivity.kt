@@ -27,6 +27,7 @@ import com.yang.lovechat.util.loadImage
 import com.yang.lovechat.util.startActivity
 import com.yang.lovechat.util.viewVisibility
 import com.yang.lovechat.viewmodel.MineViewModel
+import kotlin.jvm.java
 
 
 class UserInfoActivity :
@@ -55,7 +56,6 @@ class UserInfoActivity :
 
                 if (targetUserId == UserInfoHold.userId){
 
-                    createIntent(EditUserInfoActivity::class.java).startActivity(this@UserInfoActivity)
 
                 }else{
                     MoreMenuDialog.newInstance(false,targetUserId.toString(),0).show(supportFragmentManager)

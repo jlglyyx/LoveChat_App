@@ -1,6 +1,5 @@
 package com.yang.lovechat.ui.activity
 
-import android.R.attr.text
 import android.content.res.ColorStateList
 import android.util.Log
 import android.view.LayoutInflater
@@ -25,27 +24,22 @@ import com.yang.lovechat.helper.FloatMessageHelper
 import com.yang.lovechat.helper.IMHelper
 import com.yang.lovechat.helper.UserInfoHold
 import com.yang.lovechat.im.MessageManager
-import com.yang.lovechat.ui.fragment.LikeFragment
-import com.yang.lovechat.ui.fragment.MainFragment
-import com.yang.lovechat.ui.fragment.ConversationFragment
+import com.yang.lovechat.ui.fragment.MainTabFragment
 import com.yang.lovechat.ui.fragment.MineFragment
 import com.yang.lovechat.util.edgeToEdgeBottom
 import com.yang.lovechat.util.edgeToEdgeTop
 import com.yang.lovechat.util.showShort
 import com.yang.lovechat.viewmodel.MainViewModel
 import kotlinx.coroutines.launch
-import kotlin.collections.get
 
 class MainActivity : BaseActivity<ActMainBinding, MainViewModel>(ActMainBinding::inflate) {
     private val mImages = arrayOf(
         R.drawable.iv_tab_main,
-        R.drawable.iv_tab_like,
-        R.drawable.iv_tab_message,
         R.drawable.iv_tab_mine
     )
 
 
-    private val titles = arrayOf("Discover", "Likes", "Messages", "Profile")
+    private val titles = arrayOf("Discover", "Profile")
 
     private val mFragments = mutableListOf<Fragment>()
 
@@ -108,9 +102,7 @@ class MainActivity : BaseActivity<ActMainBinding, MainViewModel>(ActMainBinding:
 
     override fun initData() {
 
-        mFragments.add(MainFragment())
-        mFragments.add(LikeFragment())
-        mFragments.add(ConversationFragment())
+        mFragments.add(MainTabFragment())
         mFragments.add(MineFragment())
 
         initViewPager()
@@ -123,7 +115,6 @@ class MainActivity : BaseActivity<ActMainBinding, MainViewModel>(ActMainBinding:
 
         mViewModel.getAllConversationReadCount()
 
-        mViewModel.preCacheProductInfo()
 
         mViewModel.checkNewVersion()
     }
