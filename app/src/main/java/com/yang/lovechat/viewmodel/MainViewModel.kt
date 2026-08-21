@@ -5,6 +5,7 @@ import com.yang.lovechat.base.bus.SingleFlow
 import com.yang.lovechat.constant.AppConstant
 import com.yang.lovechat.data.AppVersion
 import com.yang.lovechat.data.UserInfoData
+import com.yang.lovechat.data.ChatterUserData
 import com.yang.lovechat.helper.UserInfoHold
 import com.yang.lovechat.util.setCache
 
@@ -22,6 +23,8 @@ class MainViewModel: PublicViewModel() {
     val mViewedIListData = SingleFlow<MutableList<UserInfoData>>()
 
     val mAppVersion = SingleFlow<AppVersion>()
+
+
 
 
 
@@ -182,30 +185,7 @@ class MainViewModel: PublicViewModel() {
 
     }
 
-    fun getViewedIList() {
 
-        val params = mutableMapOf<String, Any?>()
-
-        params[AppConstant.Constant.USER_ID] = UserInfoHold.userId
-
-        params[AppConstant.Constant.PAGE_NUM] = pageNum
-
-        params[AppConstant.Constant.PAGE_SIZE] = AppConstant.Constant.PAGE_SIZE_COUNT
-
-        launch({
-
-            mApiService.getViewedIList(params)
-
-        }, {
-
-            mViewedIListData.postValue(it.data)
-
-        }, onErrorHandle = {
-
-            requestExceptionEvent.postValue(it)
-        })
-
-    }
 
 
 

@@ -25,6 +25,9 @@ object UserInfoHold {
     val userId: Long?
         get() =userInfo?.id
 
+    var currentUserId: Long = -1
+
+
 
     val isVip: Boolean
         get() = getIsVip()

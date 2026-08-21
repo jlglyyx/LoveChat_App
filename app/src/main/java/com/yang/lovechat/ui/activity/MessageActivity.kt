@@ -77,6 +77,8 @@ class MessageActivity :
     private lateinit var mQuickAdapterHelper: QuickAdapterHelper
     private var convId: String = ""
 
+    private var userId: Long? = UserInfoHold.currentUserId
+
     private var friendAvatar: String? = null
 
     private var friendName: String = ""
@@ -185,7 +187,7 @@ class MessageActivity :
 
 
                 val buildTextMessage = IMHelper.buildTextMessage(
-                    UserInfoHold.userId,
+                    userId,
                     convId,
                     friendUserId,
                     message
@@ -369,7 +371,7 @@ class MessageActivity :
 
     private fun handleMessage(message: MessageData) {
 
-        if (message.userId == UserInfoHold.userId) {
+        if (message.userId == userId) {
 
             val index =
                 mMessageAdapter.items.indexOfLast { it.uid == message.uid || it.id == message.id }
@@ -533,7 +535,7 @@ class MessageActivity :
                 IMHelper.sendMessage(
                     MessageResultData(
                         item,
-                        UserInfoHold.userId.toString(),
+                        userId.toString(),
                         item.msgType
                     )
                 )
@@ -551,7 +553,7 @@ class MessageActivity :
 
                     val mMessage = mMessageAdapter.getItem(parentPosition)
 
-                    if (mMessage.userId == UserInfoHold.userId) {
+                    if (mMessage.userId == userId) {
                         showPictureDetailDialog(list, position)
                     } else {
                         if (null == data.unlockTime) {
@@ -731,7 +733,7 @@ class MessageActivity :
     ): MessageResultData<MessageData>? {
 
         val buildMediaMessage = IMHelper.buildImageVideoMessage(
-            UserInfoHold.userId,
+            userId,
             convId,
             friendUserId,
             if (needSend) list.toJson() else "",
@@ -758,13 +760,12 @@ class MessageActivity :
         return buildMediaMessage
     }
 
-
     private fun sendPrivateMediaMessage(
         content: String,
     ): MessageResultData<MessageData>? {
 
         val buildMediaMessage = IMHelper.buildImageVideoMessage(
-            UserInfoHold.userId,
+            userId,
             convId,
             friendUserId,
             content,

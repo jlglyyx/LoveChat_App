@@ -24,8 +24,9 @@ import com.yang.lovechat.helper.FloatMessageHelper
 import com.yang.lovechat.helper.IMHelper
 import com.yang.lovechat.helper.UserInfoHold
 import com.yang.lovechat.im.MessageManager
-import com.yang.lovechat.ui.fragment.MainTabFragment
+import com.yang.lovechat.ui.fragment.ConversationFragment
 import com.yang.lovechat.ui.fragment.MineFragment
+import com.yang.lovechat.ui.fragment.UserListFragment
 import com.yang.lovechat.util.edgeToEdgeBottom
 import com.yang.lovechat.util.edgeToEdgeTop
 import com.yang.lovechat.util.showShort
@@ -35,11 +36,12 @@ import kotlinx.coroutines.launch
 class MainActivity : BaseActivity<ActMainBinding, MainViewModel>(ActMainBinding::inflate) {
     private val mImages = arrayOf(
         R.drawable.iv_tab_main,
+        R.drawable.iv_tab_mine,
         R.drawable.iv_tab_mine
     )
 
 
-    private val titles = arrayOf("Discover", "Profile")
+    private val titles = arrayOf("Discover","Discover", "Profile")
 
     private val mFragments = mutableListOf<Fragment>()
 
@@ -102,7 +104,8 @@ class MainActivity : BaseActivity<ActMainBinding, MainViewModel>(ActMainBinding:
 
     override fun initData() {
 
-        mFragments.add(MainTabFragment())
+        mFragments.add(ConversationFragment())
+        mFragments.add(UserListFragment())
         mFragments.add(MineFragment())
 
         initViewPager()

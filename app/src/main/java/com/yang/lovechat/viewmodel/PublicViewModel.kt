@@ -7,6 +7,7 @@ import com.yang.lovechat.base.bus.EventBus.postValue
 import com.yang.lovechat.base.bus.SingleFlow
 import com.yang.lovechat.base.viewmodel.BaseViewModel
 import com.yang.lovechat.constant.AppConstant
+import com.yang.lovechat.data.ChatterUserData
 import com.yang.lovechat.data.MediaInfoData
 import com.yang.lovechat.data.MessageData
 import com.yang.lovechat.data.MessageResultData
@@ -63,6 +64,8 @@ open class PublicViewModel : BaseViewModel() {
     val mSwipUserData = SingleFlow<Long>()
 
     val mSwipUserErrorStatus = SingleFlow<Any>()
+
+    val mChatterUserListData = SingleFlow<MutableList<ChatterUserData>>()
 
     fun getUserInfo(userId: Long?) {
 
@@ -445,6 +448,24 @@ open class PublicViewModel : BaseViewModel() {
         }, {
 
             mDeleteAlbumMediaListData.postValue(list)
+        })
+
+    }
+
+    fun getChatterUser() {
+
+
+        launch({
+
+            mApiService.getChatterUser()
+
+        }, {
+
+            mChatterUserListData.postValue(it.data)
+
+        }, onErrorHandle = {
+
+            requestExceptionEvent.postValue(it)
         })
 
     }

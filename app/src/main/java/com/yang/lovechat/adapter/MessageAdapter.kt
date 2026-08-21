@@ -23,6 +23,7 @@ import kotlin.math.abs
 class MessageAdapter() : BaseMultiItemAdapter<MessageData>() {
 
 
+    private var userId: Long? = UserInfoHold.currentUserId
     private val maxIntervalTime = 6 * 60 * 1000
 
 
@@ -271,7 +272,7 @@ class MessageAdapter() : BaseMultiItemAdapter<MessageData>() {
 
                 MessageType.TEXT.type -> {
 
-                    if (data.userId == UserInfoHold.userId) {
+                    if (data.userId == userId) {
                         ITEM_MESSAGE_TEXT_END
                     } else {
                         ITEM_MESSAGE_TEXT_START
@@ -281,7 +282,7 @@ class MessageAdapter() : BaseMultiItemAdapter<MessageData>() {
 
                 MessageType.IMAGE_VIDEO.type -> {
 
-                    if (data.userId == UserInfoHold.userId) {
+                    if (data.userId == userId) {
                         ITEM_MESSAGE_MEDIA_END
                     } else {
                         ITEM_MESSAGE_MEDIA_START

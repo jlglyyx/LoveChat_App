@@ -101,14 +101,12 @@ object HttpEncrypt {
     }
 
 
-
-
-
     data class ClientInfoData(
         val requestId: String, // 每次请求唯一的 ID，方便后端链路追踪
         val timestamp: Long,// 请求发起时间
         val appName: String,// 应用名称标识
         val token: String,// 用户登录凭证
+        val userType: Int,// 用户登录凭证
         val platform: String, // 平台
         val osVersion: String, // 安卓系统版本号 (如: 14)
         val appVersion: String,
@@ -124,18 +122,19 @@ object HttpEncrypt {
 
     fun getInfoMap(): String {
         try {
-           val clientInfoData =  ClientInfoData(
+            val clientInfoData = ClientInfoData(
                 requestId = UUID.randomUUID().toString(),
                 timestamp = System.currentTimeMillis(),
-                appName = "Pulse",
+                appName = "LoveChat",
                 token = getCache(AppConstant.Constant.TOKEN, ""),
+                userType = 3,
                 platform = "Android",
                 osVersion = Build.VERSION.RELEASE,
                 appVersion = AppUtils.getAppVersionName(),
                 appVersionCode = "${AppUtils.getAppVersionCode()}",
                 deviceBrand = Build.BRAND,
                 deviceModel = DeviceUtils.getModel(),
-                androidId =  "${DeviceUtils.getUniqueDeviceId()}_${DeviceUtils.getAndroidID()}",
+                androidId = "${DeviceUtils.getUniqueDeviceId()}_${DeviceUtils.getAndroidID()}",
 //                androidId = if (getCache(AppConstant.Constant.IS_ALLOW, false)) DeviceUtils.getAndroidID() else null,
                 language = Locale.getDefault().language,
                 timezone = TimeZone.getDefault().id,

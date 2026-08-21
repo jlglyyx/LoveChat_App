@@ -8,17 +8,16 @@ import androidx.activity.result.contract.ActivityResultContracts
 import androidx.core.app.ActivityCompat
 import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.LinearLayoutManager
-import androidx.recyclerview.widget.RecyclerView
 import com.chad.library.adapter4.QuickAdapterHelper
 import com.chad.library.adapter4.util.addOnDebouncedChildClick
-import com.chad.library.adapter4.util.setOnDebouncedItemClick
 import com.yang.lovechat.R
 import com.yang.lovechat.adapter.ConversationAdapter
-import com.yang.lovechat.adapter.TopConversationAdapter
+import com.yang.lovechat.adapter.UserListAdapter
 import com.yang.lovechat.base.bus.EventBus
 import com.yang.lovechat.base.bus.EventBus.observe
 import com.yang.lovechat.base.fragment.BaseFragment
 import com.yang.lovechat.constant.AppConstant
+import com.yang.lovechat.data.ChatterUserData
 import com.yang.lovechat.data.ConversationData
 import com.yang.lovechat.data.InstructionType
 import com.yang.lovechat.data.MessageData
@@ -28,6 +27,7 @@ import com.yang.lovechat.databinding.ViewEmptyLikeBinding
 import com.yang.lovechat.databinding.ViewNoNetworkBinding
 import com.yang.lovechat.dialog.OpenNoticeDialog
 import com.yang.lovechat.helper.IMHelper
+import com.yang.lovechat.helper.UserInfoHold
 import com.yang.lovechat.im.MessageManager
 import com.yang.lovechat.ui.activity.MessageActivity
 import com.yang.lovechat.util.clicks
@@ -51,18 +51,21 @@ import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 
 class ConversationFragment :
-    BaseFragment<FraConversationBinding, MessageViewModel>(FraConversationBinding::inflate){
+    BaseFragment<FraConversationBinding, MessageViewModel>(FraConversationBinding::inflate) {
 
     private val mConversationAdapter by lazy { ConversationAdapter() }
 
-    private val mTopConversationAdapter by lazy { TopConversationAdapter(lifecycle) }
-
+    private val mUserListAdapter: UserListAdapter by lazy { UserListAdapter() }
     private lateinit var mQuickAdapterHelper: QuickAdapterHelper
 
 
-    private val sortJob = CoroutineScope(Dispatchers.Main+ SupervisorJob())
+    private val sortJob = CoroutineScope(Dispatchers.Main + SupervisorJob())
 
     private var isCloseNotice = false
+
+    private var currentUser: ChatterUserData? = null
+
+    private var currentUserPosition = -1
 
     private val registerForActivityResult =
         registerForActivityResult(ActivityResultContracts.RequestMultiplePermissions()) { permissions ->
@@ -114,7 +117,6 @@ class ConversationFragment :
     override fun initView() {
 
 
-
         withViewBinding {
 
 
@@ -143,7 +145,7 @@ class ConversationFragment :
 
             initRecyclerView()
 
-            initTopConversationAdapter()
+            initUserRecyclerView()
 
             onMessageReceive()
         }
@@ -158,6 +160,30 @@ class ConversationFragment :
 
 
     override fun initViewModel() {
+
+        mViewModel.mChatterUserListData.observe(this) {
+
+            if (null == currentUser && it.isNotEmpty()){
+
+                currentUser = it.first()
+
+                currentUserPosition = 0
+            }
+
+            currentUser?.let { currentUser ->
+
+                UserInfoHold.currentUserId = currentUser.userId
+
+                it.findLast { find -> find.userId == currentUser.userId }?.isCheck = true
+
+                mViewModel.getConversationList(currentUser.userId)
+            }
+
+            mUserListAdapter.submitList(it)
+
+
+        }
+
 
         mViewModel.mConversationListData.observe(this) {
 
@@ -177,6 +203,8 @@ class ConversationFragment :
 
             withViewBinding {
                 mConversationAdapter.add(0, it)
+
+
 
                 IMHelper.refreshAllReadCount(1, true)
 
@@ -231,6 +259,12 @@ class ConversationFragment :
 
                         val item = mConversationAdapter.getItemOrNull(index) ?: return@observe
 
+//                        val item1 = mUserListAdapter.getItem(currentUserPosition)
+//
+//                        item1.totalUnreadCount -= item.unreadCount
+//
+//                        mUserListAdapter.notifyItemChanged(currentUserPosition,false)
+
 
                         IMHelper.refreshAllReadCount(item.unreadCount, false)
 
@@ -247,7 +281,7 @@ class ConversationFragment :
 
             }
 
-        EventBus.with(AppConstant.EventConstant.EVENT_SHIELD_CONVERSATION).observe(this){
+        EventBus.with(AppConstant.EventConstant.EVENT_SHIELD_CONVERSATION).observe(this) {
 
             try {
                 val convId = it as? String ?: return@observe
@@ -266,9 +300,7 @@ class ConversationFragment :
                     mViewBinding.errorReLoadView.showSuccessView(mConversationAdapter.items)
 
 
-
                 }
-
 
 
             } catch (e: Exception) {
@@ -279,14 +311,12 @@ class ConversationFragment :
     }
 
 
-
-
-    private fun onMessageReceive(){
+    private fun onMessageReceive() {
 
 
         lifecycleScope.launch {
 
-            MessageManager.normalMessageFlow.collect {  (result,message, text) ->
+            MessageManager.normalMessageFlow.collect { (result, message, text) ->
 
                 try {
 
@@ -314,14 +344,13 @@ class ConversationFragment :
 
         lifecycleScope.launch {
 
-            MessageManager.errorMessageFlow.collect { (result,data, text) ->
+            MessageManager.errorMessageFlow.collect { (result, data, text) ->
 
 
             }
         }
 
     }
-
 
 
     fun handleCommonMessage(messageData: MessageData) {
@@ -346,20 +375,6 @@ class ConversationFragment :
                 mConversationAdapter.notifyItemChanged(index, false)
 
 
-
-            }else{
-
-                //todo 消息返回头像
-
-//                val conversationData = ConversationData()
-//
-//                conversationData.unreadCount += 1
-//                conversationData.lastMsgType = messageData.msgType
-//                conversationData.lastMsgContent = messageData.msgContent
-//                conversationData.lastMsgId = messageData.id!!
-//                conversationData.lastMsgTime = messageData.createTime!!
-//
-//                mConversationAdapter.add(0, conversationData)
             }
 
             sortByDescending()
@@ -459,8 +474,9 @@ class ConversationFragment :
             }
             mConversationAdapter.addOnDebouncedChildClick(R.id.cl_message) { adapter, view, position ->
 
-                val item = mConversationAdapter.getItem(position)
+                if (null == currentUser) return@addOnDebouncedChildClick
 
+                val item = mConversationAdapter.getItem(position)
 
                 createIntent(MessageActivity::class.java)
                     .putExtra(AppConstant.Constant.CONV_ID, item.convId)
@@ -493,28 +509,51 @@ class ConversationFragment :
     }
 
 
-    private fun initTopConversationAdapter() {
+    private fun initUserRecyclerView() {
+
 
         withViewBinding {
 
-            topRecyclerView.adapter = mTopConversationAdapter
+            userRecyclerView.adapter = mUserListAdapter
 
-            topRecyclerView.layoutManager = LinearLayoutManager(
-                requireContext(),
-                RecyclerView.HORIZONTAL, false
-            )
+            userRecyclerView.layoutManager =
+                LinearLayoutManager(requireContext(), LinearLayoutManager.HORIZONTAL, false)
 
-            topRecyclerView.itemAnimator = null
+            mUserListAdapter.setOnItemClickListener { adapter, view, position ->
 
-            mTopConversationAdapter.setOnDebouncedItemClick { _, _, position ->
+                val indexOf = mUserListAdapter.items.indexOf(currentUser)
 
-                val item = mTopConversationAdapter.getItem(position)
+                mUserListAdapter.getItemOrNull(indexOf)?.isCheck = false
+
+                mUserListAdapter.notifyItemChanged(indexOf,false)
+
+                val item = mUserListAdapter.getItem(position)
+
+                item.isCheck = true
+
+                currentUser = item
+
+                currentUserPosition = position
+
+                currentUser?.let {
+
+                    UserInfoHold.currentUserId = it.userId
+
+                    mViewModel.pageNum = 1
+
+                    mViewModel.getConversationList(it.userId)
+                }
+
+
+
+                mUserListAdapter.notifyItemChanged(position,false)
 
             }
 
         }
-    }
 
+
+    }
 
     private fun requestNoticePermission() {
 
@@ -587,7 +626,7 @@ class ConversationFragment :
 
             try {
 
-               val mSortedByDescendingData =  withContext(Dispatchers.IO){
+                val mSortedByDescendingData = withContext(Dispatchers.IO) {
 
                     val mSortedByDescendingData = mConversationAdapter.items
                         .sortedWith(
@@ -596,7 +635,7 @@ class ConversationFragment :
                         )
                         .toMutableList()
 
-                   mSortedByDescendingData
+                    mSortedByDescendingData
 
                 }
 
@@ -613,7 +652,6 @@ class ConversationFragment :
         }
 
 
-
     }
 
 
@@ -621,16 +659,20 @@ class ConversationFragment :
 
         mViewModel.pageNum = 1
 
-        mViewModel.getConversationList()
+        mViewModel.getChatterUser()
 
-        mViewModel.getAllConversationReadCount()
+//        mViewModel.getAllConversationReadCount()
     }
 
     private fun onLoadMore() {
 
-        mViewModel.pageNum++
+        currentUser?.let {
+            mViewModel.pageNum++
 
-        mViewModel.getConversationList()
+            mViewModel.getConversationList(it.userId)
+        }
+
+
 
     }
 

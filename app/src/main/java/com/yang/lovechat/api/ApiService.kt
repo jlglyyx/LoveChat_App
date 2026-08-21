@@ -1,6 +1,7 @@
 package com.yang.lovechat.api
 
 import com.yang.lovechat.data.AppVersion
+import com.yang.lovechat.data.ChatterUserData
 import com.yang.lovechat.data.ConversationData
 import com.yang.lovechat.data.MediaInfoData
 import com.yang.lovechat.data.MessageData
@@ -113,6 +114,6 @@ interface ApiService {
 
 
 
-    @POST("api/user/deleteUser")
-    suspend fun deleteUser(): MResult<Boolean>
+    @POST("api/chatter/getChatterUser")
+    suspend fun getChatterUser(): MResult<MutableList<ChatterUserData>>
 }

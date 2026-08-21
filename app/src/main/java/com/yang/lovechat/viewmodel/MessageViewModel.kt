@@ -32,9 +32,11 @@ class MessageViewModel: PublicViewModel() {
 
 
 
-    fun getConversationList() {
+    fun getConversationList(userId: Long) {
 
         val params = mutableMapOf<String, Any?>()
+
+        params[AppConstant.Constant.USER_ID] = userId
 
         params[AppConstant.Constant.PAGE_NUM] = pageNum
 
@@ -146,20 +148,9 @@ class MessageViewModel: PublicViewModel() {
 
         val params = mutableMapOf<String, Any?>()
 
-        val userId = UserInfoHold.userId
+        val userId = UserInfoHold.currentUserId
 
         params[AppConstant.Constant.CONV_ID] = convId
-
-
-//        launch({
-//
-//            mApiService.readConversation(params)
-//
-//        }, {
-//
-//            EventBus.with(AppConstant.EventConstant.EVENT_UPDATE_CONVERSATION_READ_COUNT).postValue(convId)
-//
-//        })
 
 
         val buildInstructionMessage = buildInstructionMessage(userId.toString(),InstructionType.READ_CONVERSATION,params)
@@ -188,11 +179,14 @@ class MessageViewModel: PublicViewModel() {
 
     fun getMessageHistory(convId: String, lastMsgId: Long? = null,pageSize: Int = AppConstant.Constant.PAGE_SIZE_COUNT) {
 
+
         if (convId.isEmpty()) return
 
         val params = mutableMapOf<String, Any?>()
 
         params[AppConstant.Constant.CONV_ID] = convId
+
+        params[AppConstant.Constant.USER_ID] = UserInfoHold.currentUserId
 
 
         if (null != lastMsgId){
